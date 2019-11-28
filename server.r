@@ -1,14 +1,10 @@
 library(shiny)
 library("ggpubr")
-library(shinythemes)
-
 
 shinyServer(function(input, output)
 {
-
   #Descriptive Analytics
   output$header <- renderPrint({
-    
     summary(iris)
   })
   
@@ -24,7 +20,7 @@ shinyServer(function(input, output)
     )
   })
   
-
+  
   #Descriptive Analytics
   output$plot <- renderPlot({
     x <- summary(iris[, as.numeric(input$var)])
@@ -34,55 +30,83 @@ shinyServer(function(input, output)
             main = names(iris[as.numeric(input$var)]))
   })
   
-  output$histogram <- renderPlot({ 
-    
+  output$histogram <- renderPlot({
     # CYLINDER
     
-    if (input$variable == 'cyl') { 
+    if (input$variable == 'cyl') {
       # Create the dataset for calculation
       set.seed(length(mtcars$cyl))
       k <- length(which(mtcars$cyl == input$cyl))
       Data = rhyper(length(mtcars$cyl), k, length(mtcars$cyl) - k, input$j)
       
       # Put data into table format
-      tab=table(Data)  
+      tab = table(Data)
       
       # Plot said table
-      barplot(tab, col='darkslateblue', border = NA, main = c("Probability of getting (a) cars from sample: ", round(dhyper(input$a, k, length(mtcars$cyl) - k, input$j),3)))
-    } 
+      barplot(
+        tab,
+        col = 'darkslateblue',
+        border = NA,
+        main = c(
+          "Probability of getting (a) cars from sample: ",
+          round(dhyper(
+            input$a, k, length(mtcars$cyl) - k, input$j
+          ), 3)
+        )
+      )
+    }
     
-    if (input$variable == 'gear') { 
+    if (input$variable == 'gear') {
       # Create the dataset for calculation
       set.seed(length(mtcars$gear))
       k <- length(which(mtcars$gear == input$gear))
       Data = rhyper(length(mtcars$gear), k, length(mtcars$gear) - k, input$j)
       
       # Put data into table format
-      tab=table(Data)  
+      tab = table(Data)
       
       # Plot said table
-      barplot(tab, col='darkslateblue', border = NA, main = c("Probability of getting (a) cars from sample: ", round(dhyper(input$a, k, length(mtcars$gear) - k, input$j),3)))
-    } 
+      barplot(
+        tab,
+        col = 'darkslateblue',
+        border = NA,
+        main = c(
+          "Probability of getting (a) cars from sample: ",
+          round(dhyper(
+            input$a, k, length(mtcars$gear) - k, input$j
+          ), 3)
+        )
+      )
+    }
     
-    if (input$variable == 'carb') { 
+    if (input$variable == 'carb') {
       # Create the dataset for calculation
       set.seed(length(mtcars$carb))
       k <- length(which(mtcars$carb == input$carb))
       Data = rhyper(length(mtcars$carb), k, length(mtcars$carb) - k, input$j)
       
       # Put data into table format
-      tab=table(Data)  
+      tab = table(Data)
       
       # Plot said table
-      barplot(tab, col='darkslateblue', border = NA, main = c("Probability of getting (a) cars from sample: ", round(dhyper(input$a, k, length(mtcars$carb) - k, input$j),3)))
-    } 
+      barplot(
+        tab,
+        col = 'darkslateblue',
+        border = NA,
+        main = c(
+          "Probability of getting (a) cars from sample: ",
+          round(dhyper(
+            input$a, k, length(mtcars$carb) - k, input$j
+          ), 3)
+        )
+      )
+    }
     
-    output$prob <- renderPrint({ 
-      
-      print(paste('Selected Variable :',input$variable))
+    output$prob <- renderPrint({
+      print(paste('Selected Variable :', input$variable))
     })
     
-  })    
+  })
   #Exponential Probability Model
   output$Expprob <- renderPrint({
     lamda1 <- 1 / mean(warpbreaks[, as.numeric(input$var)])
@@ -103,7 +127,6 @@ shinyServer(function(input, output)
     y1 = dexp(x1, input$lam)
     plot(x1, y1, type = 'b', main = "pdf exp")
   })
-  
   #Poisson Probability Model
   output$Poisprob <- renderPrint({
     lamda1 <- mean(iris[, as.numeric(input$var)])
@@ -128,6 +151,26 @@ shinyServer(function(input, output)
     )
     plot(x1, y1, type = 'b', main = "pdf poisson")
   })
+  #summary output created, retuning summ of mtcars$mpg variable
+  
+  output$summary <- renderPrint({
+    summary(mtcars$mpg)
+  })
+  
+  #pnorm function used to calculate difference from two input figures, returning result using print function
+  
+  output$normprob <- renderPrint({
+    probability <- pnorm(input$input1,mean = mean(mtcars$mpg), sd = sd(mtcars$mpg)) - pnorm(input$input2,mean = mean(mtcars$mpg), sd = sd(mtcars$mpg))
+    print(probability)
+  })
+  
+  
+  
+  output$chart1 <- renderPlot({
+    bars <- seq(min(x), max(x), length.out = input$barslider + 1)
+    hist(mtcars$mpg, breaks = bars, col = 'blue', border = 'white')
+  })
+  
   
   #Hypothesis Test - One Pop
   output$MeanHyp <- renderPrint({
@@ -156,6 +199,8 @@ shinyServer(function(input, output)
     print(t1$p.value)
     print(decision1)
   })
+  
+  
   ########################################### Changes ####################################################################
   #Hypothesis Test - Two Pop
   
@@ -262,4 +307,5 @@ shinyServer(function(input, output)
   output$pred <- renderText({
     model_lm_pred()
   })
+  
 })
