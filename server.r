@@ -1,19 +1,11 @@
 library(shiny)
 library("ggpubr")
-<<<<<<< HEAD
 library("readxl")
 
 shinyServer(function(input, output)
 {
   #Descriptive Analytics - summary 
   output$headeriris <- renderPrint({
-=======
-
-shinyServer(function(input, output)
-{
-  #Descriptive Analytics
-  output$header <- renderPrint({
->>>>>>> 9e44f716e02b8b11173bae98569ee80f25262519
     summary(iris)
   })
   output$headerwb <- renderPrint({
@@ -44,7 +36,6 @@ shinyServer(function(input, output)
       geom_point(aes(size = Species, shape = Species)) 
   })
   
-<<<<<<< HEAD
   # WARPBREAKS
   output$plotwb <- renderPlot({
     ggboxplot(warpbreaks, x = "wool", y = "breaks",
@@ -92,18 +83,6 @@ shinyServer(function(input, output)
     par(op)
   })
   
-=======
-  
-  #Descriptive Analytics
-  output$plot <- renderPlot({
-    x <- summary(iris[, as.numeric(input$var)])
-    boxplot(x,
-            col = "sky blue",
-            border = "purple",
-            main = names(iris[as.numeric(input$var)]))
-  })
-  
->>>>>>> 9e44f716e02b8b11173bae98569ee80f25262519
   output$histogram <- renderPlot({
     # CYLINDER
     
@@ -181,11 +160,7 @@ shinyServer(function(input, output)
     })
     
   })
-<<<<<<< HEAD
   #Exp Probability Model - Faithful
-=======
-  #Exponential Probability Model
->>>>>>> 9e44f716e02b8b11173bae98569ee80f25262519
   output$Expprob <- renderPrint({
     lamda1<-mean(faithful$waiting)
     prob <- ppois(input$X,lamda1)
@@ -206,12 +181,8 @@ shinyServer(function(input, output)
     y1=dexp(x1,input$lam1)  
     plot(x1,y1,type='b', main = "pdf exp")
   })
-<<<<<<< HEAD
   
   #Poisson Probability Model - warpbreaks
-=======
-  #Poisson Probability Model
->>>>>>> 9e44f716e02b8b11173bae98569ee80f25262519
   output$Poisprob <- renderPrint({
     lamda1<- mean(warpbreaks$breaks)
     prob <- ppois(input$Y,lamda1)
@@ -266,26 +237,6 @@ shinyServer(function(input, output)
   output$map = renderPlot({normal(input$lower,input$upper)
     
   })
-  #summary output created, retuning summ of mtcars$mpg variable
-  
-  output$summary <- renderPrint({
-    summary(mtcars$mpg)
-  })
-  
-  #pnorm function used to calculate difference from two input figures, returning result using print function
-  
-  output$normprob <- renderPrint({
-    probability <- pnorm(input$input1,mean = mean(mtcars$mpg), sd = sd(mtcars$mpg)) - pnorm(input$input2,mean = mean(mtcars$mpg), sd = sd(mtcars$mpg))
-    print(probability)
-  })
-  
-  
-  
-  output$chart1 <- renderPlot({
-    bars <- seq(min(x), max(x), length.out = input$barslider + 1)
-    hist(mtcars$mpg, breaks = bars, col = 'blue', border = 'white')
-  })
-  
   
   #Hypothesis Test - One Pop
   output$MeanHyp <- renderPrint({
@@ -302,7 +253,6 @@ shinyServer(function(input, output)
     print(t)
   })
   
-<<<<<<< HEAD
   output$hypresult <- renderPrint({
     x = iris[,as.numeric(input$iv)]
     t <- t.test(x,mu=input$mu,alternative = input$testtype)
@@ -312,8 +262,6 @@ shinyServer(function(input, output)
       }
     print(decision)
   })
-=======
->>>>>>> 9e44f716e02b8b11173bae98569ee80f25262519
   
   ########################################### Changes ####################################################################
   #Hypothesis Test - Two Pop
@@ -387,25 +335,27 @@ shinyServer(function(input, output)
       mtcars$hp,
       xlab = "MPG",
       ylab = "Hoursepower",
-      type = "p"
+      type = "p",
+      pch = 19,
+      family = "mono"
     )
     if (input$showmodel)
     {
-      abline(model_lm, col = "red", lwd = 4)
+      abline(model_lm, col = "#FF0000", lwd = 4, lty = 6)
     }
     points(
       mpgInput,
       model_lm_pred(),
-      col = "blue",
-      pch = 16,
-      cex = 2
+      col = "#0B07FF",
+      pch = "*",
+      cex = 4
     )
   })
   output$pred <- renderText({
     model_lm_pred()
   })
   
-<<<<<<< HEAD
+  
   #Poisson Regression - dataset shows absences per year with a number of factors highlighted
   Data<-read.csv("Abs.csv")
   Data<-na.omit(Data)
@@ -420,7 +370,7 @@ shinyServer(function(input, output)
   output$drinkercount <- renderPrint({
     sum(Data[,6])
   })
-  
+
   poisson.model <- glm(Absences ~ Age + Body.mass.index + Social.smoker + Social.drinker, Data, family = poisson(link = "log"))
   
   output$p_model <- renderPrint({
@@ -432,8 +382,7 @@ shinyServer(function(input, output)
     newdata <- data.frame(Age = input$Age, Body.mass.index = input$BMI, Social.smoker = as.numeric(input$SocialSmoker), Social.drinker = as.numeric(input$SocialDrinker))
     predict(poisson.model, newdata = newdata, type = "response")
   })
-  
-=======
->>>>>>> 9e44f716e02b8b11173bae98569ee80f25262519
+
 })
 
+ 

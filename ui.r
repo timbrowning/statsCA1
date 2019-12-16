@@ -3,6 +3,7 @@ library("ggpubr")
 
 
 shinyUI(fluidPage(
+  tags$style(HTML(".js-irs-0 .irs-single, .js-irs-0 .irs-bar-edge, .js-irs-0 .irs-bar {background: #FF0000}")),
   theme = shinytheme("simplex"),
   navbarPage(
     title = "",
@@ -64,7 +65,6 @@ shinyUI(fluidPage(
                                    selectInput(
                                      inputId = "dataset",
                                      label = "Select a DataSet",
-<<<<<<< HEAD
                                      choices = c("iris","warpbreaks","mtcars","faithful","beavers"),
                                      selected = "iris")
                                  )
@@ -93,41 +93,21 @@ shinyUI(fluidPage(
                           ),
                           br(),
                           br()
-=======
-                                     choices = "iris"
-                                   )
-                                   
-                                 )),
-                          
-                          column(
-                            5,
-                            h4("Summary", align = "middle"),
-                            verbatimTextOutput("header")
-                          ),
-                          br(),
-                          br()
-                          
->>>>>>> 9e44f716e02b8b11173bae98569ee80f25262519
                         )),
                
                ####################################################################################################################################
                
-<<<<<<< HEAD
                tabPanel("Graphical Representation",
-=======
-               tabPanel("Box Plots",
->>>>>>> 9e44f716e02b8b11173bae98569ee80f25262519
                         fluidRow(
                           column(2, br(),
                                  wellPanel(
                                    selectInput(
-<<<<<<< HEAD
                                      inputId = "dataset2",
                                      label = "Select a DataSet",
                                      choices = c("iris","warpbreaks","mtcars","faithful","beavers"),
                                      selected = "iris")
                                  )
-                          ),
+                            ),
                           column(10,
                                  conditionalPanel(condition = "input.dataset2 == 'iris'",
                                                   h3("Boxplot of the Iris Dataset", align = "middle"),
@@ -152,56 +132,6 @@ shinyUI(fluidPage(
                                                   plotOutput("plotbeavers")
                                  ) 
                           )
-=======
-                                     "dataset",
-                                     h5("Choose a dataset:"),
-                                     choices = c("iris"),
-                                     selected = "iris"
-                                   ),
-                                   
-                                   conditionalPanel(
-                                     condition = "input.dataset == 'iris'",
-                                     selectInput(
-                                       "var",
-                                       label = "Choose a variable (a):",
-                                       choice = c(
-                                         "Sepal.Length" = 1,
-                                         "Sepal.Width" =
-                                           2,
-                                         "Petal.Length" =
-                                           3,
-                                         "Petal.Width" =
-                                           4
-                                       ),
-                                       selectize = FALSE
-                                     ),
-                                     selectInput(
-                                       "varb",
-                                       label = "Choose a variable",
-                                       choice = c(
-                                         "Sepal.Length" = 1,
-                                         "Sepal.Width" =
-                                           2,
-                                         "Petal.Length" =
-                                           3,
-                                         "Petal.Width" =
-                                           4
-                                       ),
-                                       selectize = FALSE
-                                     )
-                                   )
-                                   
-                                 )),
-                          column(
-                            8,
-                            h4("Boxplot of the Iris", align = "middle"),
-                            plotOutput("plot1"),
-                            h4("Boxplot of the Variable A", align = "middle"),
-                            plotOutput("plot")
-                          )
-                          
-                          
->>>>>>> 9e44f716e02b8b11173bae98569ee80f25262519
                         ))
              )),
     ####################################################################################################################################
@@ -256,34 +186,17 @@ shinyUI(fluidPage(
                                           "carb",
                                           "Choose Carbon :",
                                           c(
-<<<<<<< HEAD
                                             "1" = 1,"2" = 2,"3" = 3,"4" = 4, "6" = 6, "8" = 8
                                           )
                                         )
                        )
-=======
-                                            "1" = 1,
-                                            "2" = 2,
-                                            "3" = 3,
-                                            "4" = 4,
-                                            "6" = 6,
-                                            "8" = 8
-                                          )
-                                        ))
->>>>>>> 9e44f716e02b8b11173bae98569ee80f25262519
                      )
                    ),
                    
                    column(
                      7,
                      h4("Geometric Histogram", align = "middle"),
-<<<<<<< HEAD
                      plotOutput("histogram")
-=======
-                     plotOutput("histogram"),
-                     h4("Table", align = "middle"),
-                     tableOutput("prob")
->>>>>>> 9e44f716e02b8b11173bae98569ee80f25262519
                    )
                  )),
         
@@ -296,56 +209,25 @@ shinyUI(fluidPage(
                      br(),
                      wellPanel(
                        numericInput("Y", "Input Y for Exp prob model", value = 1),
-<<<<<<< HEAD
                        numericInput("lam", "parameter lambda for dist. graph", value = 1),
                        numericInput("max1", "upper limit for x for dist. graph" , value = 10)
-=======
-                       #selectInput(inputId = "columns", label = "Select a Column", choices = ""),
-                       numericInput("lam", "parameter lambda for dist. graph", value = 1),
-                       numericInput("max1", "upper limit for x for dist. graph" , value = 10),
-                       
-                       
-                       
-                       
->>>>>>> 9e44f716e02b8b11173bae98569ee80f25262519
                      )
                    ),
                    column(
                      8,br(),
-<<<<<<< HEAD
                      h4("Poisson Probability Model - Warpbreaks Dataset"),
                      p(
                        "The probability the amount of warpbreaks in the loom is less than",
-=======
-                     h4("Poisson Probability Model - IRIS Dataset"),
-                     p(
-                       "The probability the next poisson modelled",
-                       strong("var"),
-                       "is less than",
->>>>>>> 9e44f716e02b8b11173bae98569ee80f25262519
                        strong("y"),
                        "is:"
                      ),
                      verbatimTextOutput("Poisprob"),
-<<<<<<< HEAD
                      paste("The prediction for the amount of warpbreaks in the next loom is:"),
                      verbatimTextOutput("PoisX"),
                      h3("Poisson Graphs"),
                      plotOutput("plotpois"),
                      plotOutput("plotpois1")
                    )
-=======
-                     
-                     p("The prediction for the next var modelled by poisson is:"),
-                     verbatimTextOutput("PoisX"),
-                     
-                     h4("Poisson Graphs"),
-                     plotOutput("plotpois"),
-                     plotOutput("plotpois1")
-                   )
-                   
-                   
->>>>>>> 9e44f716e02b8b11173bae98569ee80f25262519
                  ))
       )
     ),
@@ -357,47 +239,16 @@ shinyUI(fluidPage(
                    column(
                      2,
                      br(),
-<<<<<<< HEAD
                      wellPanel( 
                        numericInput("X", "Input X for Exp prob model", value = 1),
                        numericInput("lam1", "parameter lambda for dist. graph", value = 1),
                        numericInput("max2", "upper limit for x for dist. graph" , value = 10)
                      )
-=======
-                     wellPanel(
-                       conditionalPanel(
-                         condition = "input.dataset == 'warpbreaks'",
-                         selectInput(
-                           "var1",
-                           label = "Choose a variable",
-                           choice = c(
-                             "breaks" = 1,
-                             "wool" = 2,
-                             "tension" =
-                               3
-                           ),
-                           selectize = FALSE
-                         ),
-                         numericInput("X", "Input X for Pois prob model", value = 1),
-                       ),
-                       
-                       
-                       numericInput("lam", "parameter lambda for dist. graph", value = 1),
-                       numericInput("max1", "upper limit for x for dist. graph" , value = 10)
-                       
-                       
-                       
-                       
-                     )
-                     
-                     
->>>>>>> 9e44f716e02b8b11173bae98569ee80f25262519
                    ),
                    column(
                      9,
                      br()
                      ,
-<<<<<<< HEAD
                      h4("Exponential Probability Model - Faithful Dataset"),
                      p("The probability the next erruption is in less in X minutes is:"),
                      verbatimTextOutput("Expprob"),
@@ -406,38 +257,11 @@ shinyUI(fluidPage(
                      h3("Exponential Graphs"),
                      plotOutput("plotexp")
                    )
-=======
-                     h4("Exponential Probability Model - WARPBREAKS Dataset"),
-                     
-                     p(
-                       "The probability the next Exponentially modelled var is less than X is:"
-                     ),
-                     verbatimTextOutput("Expprob"),
-                     h4("The Prediction for the next var is:"),
-                     verbatimTextOutput("ExpX"),
-                     h4("Exponential Graphs"),
-                     plotOutput("plotexp"),
-                     plotOutput("plotexp1")
-                   )
-                   
-                   
-                   
-                   
-                   
-                   
-                   
-                   
-                   
->>>>>>> 9e44f716e02b8b11173bae98569ee80f25262519
                  )),
         tabPanel(
           "Chi-Square",
           fluidRow(
-<<<<<<< HEAD
             column(2, br()),
-=======
-            column(2, br(),),
->>>>>>> 9e44f716e02b8b11173bae98569ee80f25262519
             
             h3("Chi Square Probability Model:"),
             paste("The probability the next Chi-Square modelled var is less than y is:"),
@@ -454,21 +278,8 @@ shinyUI(fluidPage(
             column(2, br(),
                    #Three inputs. Two numeric for probability calc and 1 slider for histogram. Default value 1.
                    wellPanel(
-<<<<<<< HEAD
                      numericInput("lower", "Input 1", value = 15),
                      numericInput("upper", "Input 2", value = 30)
-=======
-                     numericInput("input1", "Input 1", value = 1),
-                     numericInput("input2", "Input 2", value = 1),
-                     sliderInput(
-                       "barslider",
-                       "Select # of bins",
-                       min = 1,
-                       max = 20,
-                       value = 10
-                     )
-                     
->>>>>>> 9e44f716e02b8b11173bae98569ee80f25262519
                    )),
             
             #Show summary of chosen dataset
@@ -479,7 +290,6 @@ shinyUI(fluidPage(
             #Show probability of getting a mpg between two inputs
             
             h3("Normal Probability Model - MtCars (mpg) Dataset"),
-<<<<<<< HEAD
             p("The probability of getting between lower and upper is:"),
             verbatimTextOutput("normprob"),
             
@@ -487,20 +297,6 @@ shinyUI(fluidPage(
             plotOutput("map")   
           )
         )
-=======
-            p("The probability of getting between input 1 and input 2 is:"),
-            verbatimTextOutput("normprob"),
-            
-            #Histogram showing distribution of mpg variable
-            
-            plotOutput("chart1"),
-            
-            
-          )
-        )
-        
-        
->>>>>>> 9e44f716e02b8b11173bae98569ee80f25262519
       )
     ),
     
@@ -509,24 +305,23 @@ shinyUI(fluidPage(
                tabPanel("One Population",
                         fluidRow(
                           column(2, br(),
-                                 wellPanel(
-                                   selectInput(
-                                     "Alpha",
-                                     h5("Alpha for Hypothesis Test"),
-                                     choices = c("0.01", "0.05", "0.025")
-                                   ),
-                                   selectInput(
-                                     "testtype",
-                                     h5("Type of Hypothesis Test"),
-                                     choices = c("less", "greater", "two.sided")
-                                   ),
-<<<<<<< HEAD
-                                   selectInput(
-                                     "iv",
-                                     h5("Variable to be tester"),
-                                     choice=c("Sepal.Length"=1,"Sepal.Width"=2,"Petal.Length"=3,"Petal.Width"=4), selectize= FALSE),
-                                   numericInput("mu", "mu for mean hypothesis test", value = 5)
-                                 )),
+                           wellPanel(
+                             selectInput(
+                               "Alpha",
+                               h5("Alpha for Hypothesis Test"),
+                               choices = c("0.01", "0.05", "0.025")
+                             ),
+                             selectInput(
+                               "testtype",
+                               h5("Type of Hypothesis Test"),
+                               choices = c("less", "greater", "two.sided")
+                             ),
+                             selectInput(
+                               "iv",
+                               h5("Variable to be tester"),
+                               choice=c("Sepal.Length"=1,"Sepal.Width"=2,"Petal.Length"=3,"Petal.Width"=4), selectize= FALSE),
+                             numericInput("mu", "mu for mean hypothesis test", value = 5)
+                           )),
                           column(
                             7,
                             h4("Test of mean with one population"),
@@ -557,32 +352,6 @@ shinyUI(fluidPage(
                             7,
                             h4("Test of Mean with two population"),
                             h5("Testing the mean temperature of Beavers1 and Beavers2"),
-=======
-                                   numericInput("mu", "mu for mean hypothesis test", value = 5),
-                                   
-                                   
-                                   
-                                 )),
-                          
-                          column(
-                            5,
-                            h4("Test of Hypothesis with one population"),
-                            h4("Mean of Input Variable "),
-                            p("The P-Value is:"),
-                            verbatimTextOutput("MeanHyp"),
-                            h4("Variance of Input Variable"),
-                            p("The P-Value is:"),
-                            verbatimTextOutput("VarHyp")
-                          ),
-                          
-                          
-                        )),
-               tabPanel("Two Population",
-                        fluidRow(
-                          column(
-                            5,
-                            h4("Test of Hypothesis with two population"),
->>>>>>> 9e44f716e02b8b11173bae98569ee80f25262519
                             p("SAMPLE 1"),
                             verbatimTextOutput("HypS1"),
                             p("SAMPLE 2"),
@@ -591,128 +360,93 @@ shinyUI(fluidPage(
                             verbatimTextOutput("ttest"),
                             p("Outcome"),
                             verbatimTextOutput("hyp2result")
-<<<<<<< HEAD
                           )
                         ))
-=======
-                            
-                            
-                          )
-                        ))
-               
-               
-               
->>>>>>> 9e44f716e02b8b11173bae98569ee80f25262519
              )),
     
     
     tabPanel("Regression Model",
-<<<<<<< HEAD
              tabsetPanel(
                tabPanel("Linear Regression",
-                        fluidRow(
-                          column(2, br(),
-                                 
-                                 wellPanel(
-                                   sliderInput(
-                                     "sliderMPG",
-                                     "Input MPG for regression model?",
-                                     min = 10,
-                                     max = 35,
-                                     value = 20
-                                   ),
-                                   checkboxInput("showmodel", 'Show/hide the predicted model', value = TRUE)
-                                 )),
-                          column(
-                            5,
-                            br(),
-                            h4("Linear Regression Model", align = "middle"),
-                            plotOutput("lmplot"),
-                            p("Predicted Horsepower"),
-                            verbatimTextOutput("pred", placeholder = TRUE)
-                          )
-                        )
-               ),
-               tabPanel("Poisson Regression",
-                        fluidRow(
-                          column(2, br(),
-                                 wellPanel(
-                                   numericInput("Age", "Enter Age:", value = 41 , min = 27, max=58),
-                                   radioButtons("SocialDrinker","Social Drinker?:",c("No"=0, "Yes"=1 )),
-                                   radioButtons("SocialSmoker","Social Smoker?:",c("No"=0, "Yes"=1 )),
-                                   numericInput("BMI", "Enter BMI:", value = 23, min = 19, max =40)
-                                   
-                                 )),
-                          column(
-                            10,
-                            br(),
-                            h4("Details of Data set used:", align = "middle"),
-                            h5("Dataset used has informtion on the count of absences of employees in a company in one year. 
-                             We will use the data provided to predict the amount of leave days a person takes based on some of their health and social factors."),
-                            h5("Some of the summary statistics can be seen below:"),
-                            h5("The data set also contained "),
-                            verbatimTextOutput("sumfile"),
-                            h5("Count of social smokers"),
-                            verbatimTextOutput("smokercount"),
-                            h5("Count of social drinkers"),
-                            verbatimTextOutput("drinkercount"),
-                            h4("Poisson Regression Model", align = "middle"),
-                            verbatimTextOutput("p_model"),
-                            p("Prediction of days absent per year - based on input selected"),
-                            verbatimTextOutput("ppred", placeholder = TRUE)
-                          )
-                        )
+               fluidRow(
+                 column(2, br(),
+                        wellPanel(
+                          selectInput(
+                            inputId = "dataset3",
+                            label = "Select a DataSet",
+                            choices = c("mtcars"),
+                            selected = "mtcars"),
+                          
+                          sliderInput(
+                            "sliderMPG",
+                            "Input MPG for Linear regression model?",
+                            min = 10,
+                            max = 35,
+                            value = 20
+                          ),
+                          uiOutput("choose_regressors"),
+                          checkboxInput("showmodel", 'Show/hide the predicted model', value = TRUE)
+                        )),
+                 column(
+                   5,
+                   br(),
+                   
+                   plotOutput("lmplot"),
+                   br(),p("Predicted Horsepower: "),
+                   verbatimTextOutput("pred", placeholder = TRUE)
+              
+          ),
+                 
+                 
+                 
+                  
+              
+                 column(5,br(),br(),br(),
+                        
+                        wellPanel(
+                          code("Linear Regression Model:",style="color:red"),
+                          p(HTML("<ul> <li type=square> An interactive plot to show the relationship between the hoursepower (hp) and the miles per galon (mpg)<li type=square>"),p(),
+                            p(HTML("<strong>Regression</strong>: model_lm <- lm(hp ~ mpg, data = mtcars)<li type=square>")),
+                            p(HTML(" <strong>Predict</strong>: predict(model_lm, newdata = data.frame(mpg = mpgInput)",HTML("</ul>"))))
+                          
+                          
+                          ))
+                 
+                 
                )
+             ),
+             tabPanel("Poisson Regression",
+                      fluidRow(
+                        column(2, br(),
+                               wellPanel(
+                                 numericInput("Age", "Enter Age:", value = 41 , min = 27, max=58),
+                                 radioButtons("SocialDrinker","Social Drinker?:",c("No"=0, "Yes"=1 )),
+                                 radioButtons("SocialSmoker","Social Smoker?:",c("No"=0, "Yes"=1 )),
+                                 numericInput("BMI", "Enter BMI:", value = 23, min = 19, max =40)
+                                 
+                               )),
+                        column(
+                          10,
+                          br(),
+                          h4("Details of Data set used:", align = "middle"),
+                          h5("Dataset used has informtion on the count of absences of employees in a company in one year. 
+                             We will use the data provided to predict the amount of leave days a person takes based on some of their health and social factors."),
+                          h5("Some of the summary statistics can be seen below:"),
+                          h5("The data set also contained "),
+                          verbatimTextOutput("sumfile"),
+                          h5("Count of social smokers"),
+                          verbatimTextOutput("smokercount"),
+                          h5("Count of social drinkers"),
+                          verbatimTextOutput("drinkercount"),
+                          h4("Poisson Regression Model", align = "middle"),
+                          verbatimTextOutput("p_model"),
+                          p("Prediction of days absent per year - based on input selected"),
+                          verbatimTextOutput("ppred", placeholder = TRUE)
+                        )
+                      )
+             )
              ) 
              
     )
   )
 ))
-=======
-             tabsetPanel(tabPanel(
-               "Linear Regression",
-               fluidRow(
-                 column(2, br(),
-                        
-                        wellPanel(
-                          sliderInput(
-                            "sliderMPG",
-                            "Input MPG for regression model?",
-                            min = 10,
-                            max = 35,
-                            value = 20
-                          ),
-                          checkboxInput("showmodel", 'Show/hide the predicted model', value = TRUE)
-                          
-                          
-                          
-                          
-                        )),
-                 
-                 column(
-                   5,
-                   br(),
-                   h4("Linear Regression Model", align = "middle"),
-                   plotOutput("lmplot"),
-                   p("Predicted Horsepower"),
-                   verbatimTextOutput("pred", placeholder = TRUE),
-                   
-                 )
-                 
-                 
-               )
-             ))),
-    
-    
-    tabPanel("Deep Insights",
-             fluidRow(column(2, br(
-             ),)))
-    
-    
-    
-    
-    
-    
-  )
-))
->>>>>>> 9e44f716e02b8b11173bae98569ee80f25262519
