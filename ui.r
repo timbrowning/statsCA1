@@ -371,12 +371,6 @@ shinyUI(fluidPage(
                fluidRow(
                  column(2, br(),
                         wellPanel(
-                          selectInput(
-                            inputId = "dataset3",
-                            label = "Select a DataSet",
-                            choices = c("mtcars"),
-                            selected = "mtcars"),
-                          
                           sliderInput(
                             "sliderMPG",
                             "Input MPG for Linear regression model?",
@@ -385,7 +379,8 @@ shinyUI(fluidPage(
                             value = 20
                           ),
                           uiOutput("choose_regressors"),
-                          checkboxInput("showmodel", 'Show/hide the predicted model', value = TRUE)
+                          checkboxInput("showmodel", 'Show/hide the predicted model', value = TRUE),
+                       
                         )),
                  column(
                    5,

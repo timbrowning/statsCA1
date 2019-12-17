@@ -321,8 +321,10 @@ shinyServer(function(input, output)
   })
   
   #Linear Regression Model
+  dataset3 <- data.frame(x=mtcars$mpg,y=mtcars$hp)
   
   model_lm <- lm(hp ~ mpg, data = mtcars)
+  
   model_lm_pred <- reactive({
     mpgInput <- input$sliderMPG
     predict(model_lm, newdata = data.frame(mpg = mpgInput))
@@ -343,6 +345,8 @@ shinyServer(function(input, output)
     {
       abline(model_lm, col = "#FF0000", lwd = 4, lty = 6)
     }
+    
+    
     points(
       mpgInput,
       model_lm_pred(),
