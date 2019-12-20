@@ -1,3 +1,15 @@
+# ui.R & server.r
+# Assignment 1
+# Due Date: 23rd December '19
+#
+# Created entire UI, tabs/nested tabs, set theme, created about page,  Applied columns to each page, Two population Hypothesis and  Linear Regression model, 
+# 
+# Link to Github: https://github.com/timbrowning/statsCA1
+#
+# Copyright (c) 2019 Tim Browning. All rights reserved.
+
+
+
 library(shinythemes)
 library("ggpubr")
 
