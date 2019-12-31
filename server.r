@@ -398,6 +398,35 @@ shinyServer(function(input, output)
     newdata <- data.frame(Age = input$Age, Body.mass.index = input$BMI, Social.smoker = as.numeric(input$SocialSmoker), Social.drinker = as.numeric(input$SocialDrinker))
     predict(poisson.model, newdata = newdata, type = "response")
   })
+  
+  output$titanicinfo <- renderPrint({
+    data1 <- read.csv("train.csv", header = TRUE)
+    summary(data1)
+  })
+  
+  output$surviveprob <- renderPrint({
+    
+    data1 <- read.csv("train.csv", header = TRUE)
+    
+    x1 <- data1$Age     
+    x2 <- data1$Fare 
+    x3 <- data1$Pclass 
+    y  <- data1$Survived
+    dataset = na.omit(data.frame(x1,x2,x3,y))
+    fit.model <- glm(y ~., data = dataset, family='binomial') 
+    x <- data.frame(25,5.0,'s')
+    
+    x <- data.frame(x1=input$age,x2=input$fare,x3=input$class)
+    p <- predict(fit.model,x)
+    p <- ifelse(p>=0.5,1,0)
+    
+    if(p == 0){
+      ans = "This passenger did not survive the sinking"
+    } else {
+      ans = "This passenger did survive the sinking"
+    }
+    print(ans)
+  })
 
 })
 

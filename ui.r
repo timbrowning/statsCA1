@@ -451,7 +451,30 @@ shinyUI(fluidPage(
                           verbatimTextOutput("ppred", placeholder = TRUE)
                         )
                       )
-             )
+             ),
+          tabPanel("Logistic Regression - James McAuley",
+                   fluidPage(
+                     titlePanel("Titanic Survival"),
+                     sidebarLayout(
+                       sidebarPanel(
+                         p("Provide the Age, Fare and Class of the Passenger"),
+                         numericInput("age", label = h4("Age"), value = 15),
+                         numericInput("fare", label = h4("Fare"), value = 20),
+                         sliderInput("class", label = h4("Class"), min = 1, max = 3, value = 2)
+                       ),
+                       mainPanel(
+                         
+                         h2("Titanic Info:"),
+                         verbatimTextOutput("titanicinfo"),
+                         
+                         verbatimTextOutput("surviveprob"),
+                         
+                         tags$img(src = "https://www.pngkey.com/png/full/200-2001770_titanic-png-ss-nomadic-and-titanic.png", align =
+                                    "left", height="75%", width="75%")
+                         
+                       )
+                     )))
+          
              ) 
              
     )
